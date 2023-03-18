@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timer Example</title>
+  </head>
+  <body onload="startTimer()">
+    <h1>Timer Example</h1>
+    <p>Time elapsed: <span id="timer">0</span> seconds</p>
+    <button onclick="stopTimer()">Stop Timer</button>
+    <script>
+      let startTime = Date.now();
+      let timerInterval;
+
+      function startTimer() {
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        const timeElapsed = Math.round((Date.now() - startTime) / 1000);
+        localStorage.setItem('timerValue', timeElapsed);
+        alert(`Timer stopped. Time elapsed: ${timeElapsed} seconds.`);
+      }
+
+      function updateTimer() {
+        const timeElapsed = Math.round((Date.now() - startTime) / 1000);
+        document.getElementById('timer').innerHTML = timeElapsed;
+      }
+    </script>
+  </body>
+</html>
